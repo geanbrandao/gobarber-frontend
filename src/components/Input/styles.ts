@@ -3,6 +3,7 @@ import { shade } from 'polished';
 
 interface ContainerProps {
   isFocused: boolean;
+  isFilled: boolean;
 }
 
 export const Container = styled.div<ContainerProps>`
@@ -21,6 +22,12 @@ export const Container = styled.div<ContainerProps>`
     props.isFocused &&
     css`
       border: 2px solid #ff9000;
+      color: #ff9000;
+    `}
+
+  ${(props) =>
+    props.isFilled &&
+    css`
       color: #ff9000;
     `}
 
