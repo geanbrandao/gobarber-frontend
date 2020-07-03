@@ -1,9 +1,12 @@
 import styled, { css } from 'styled-components';
 import { shade } from 'polished';
 
+import Tooltip from '../Tooltip';
+
 interface ContainerProps {
   isFocused: boolean;
   isFilled: boolean;
+  isErrored: boolean;
 }
 
 export const Container = styled.div<ContainerProps>`
@@ -17,6 +20,12 @@ export const Container = styled.div<ContainerProps>`
 
   display: flex;
   align-items: center;
+
+  ${(props) =>
+    props.isErrored &&
+    css`
+      border: 2px solid #c53030;
+    `}
 
   ${(props) =>
     props.isFocused &&
@@ -48,5 +57,25 @@ export const Container = styled.div<ContainerProps>`
 
   svg {
     margin-right: 16px;
+  }
+`;
+
+export const Error = styled(Tooltip)`
+  height: 20px;
+  margin-left: 16px;
+  svg {
+    margin: 0;
+  }
+
+  /* aqui vai forcar que o tooltip, que por padrao tem a cor do app,
+  quando for um erro ele seja vermelho */
+
+  span {
+    background: #c53030;
+    color: #fff;
+
+    &::before {
+      border-color: #c53030 transparent;
+    }
   }
 `;
